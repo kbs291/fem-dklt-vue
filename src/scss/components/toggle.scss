@@ -1,0 +1,72 @@
+@use '../util' as *;
+
+.toggle {
+  display: flex;
+  gap: rem(13);
+  border: none;
+  margin: 0;
+  padding: 0;
+
+  .label {
+    color: var(--text-color1);
+    font-size: rem(14);
+    align-self: center;
+    text-transform: capitalize;
+  }
+
+  &__wrapper {
+    position: relative;
+    height: rem(24);
+  }
+
+  input[type='radio'] {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: rem(21);
+    height: rem(21);
+    margin: 0;
+    opacity: 0;
+    z-index: 1;
+
+    &#dark:checked {
+      ~ .toggle__button {
+        left: rem(3);
+      }
+    }
+
+    &#light:checked {
+      ~ .toggle__button {
+        left: calc(100% - 3px);
+        transform: translate(-100%, -50%);
+      }
+    }
+
+    &:focus {
+      ~ .toggle__button {
+        border: 2px solid #fff;
+      }
+    }
+  }
+
+  &__background {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: rem(12);
+    background: var(--toggle-bg);
+  }
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    width: rem(18);
+    height: rem(18);
+    border-radius: 50%;
+    background-color: var(--toggle-btn);
+    transform: translateY(-50%);
+    transition: all 300ms ease-in-out;
+  }
+}
